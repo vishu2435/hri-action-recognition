@@ -1,4 +1,5 @@
-"""Human action recognition MVP."""
+# Author: Vishesh
+"""Ultra Vision computer vision final project."""
 
 from .model import ActionRecognizer
 

@@ -1,6 +1,6 @@
-# HRI Action Recognition MVP
+# Ultra Vision
 
-A runnable classical-computer-vision baseline for the project proposal's six KTH-style actions:
+Computer vision final project for the project proposal's six KTH-style actions:
 `walking`, `jogging`, `running`, `boxing`, `handwaving`, and `handclapping`.
 
 The pipeline processes one 40-frame image folder at a time:
@@ -17,7 +17,7 @@ The pipeline processes one 40-frame image folder at a time:
 python3 -m venv .venv
 source .venv/bin/activate
 pip install '.[dev]'
-hri-action demo --fresh
+ultra-vision demo --fresh
 streamlit run app.py
 ```
 
@@ -43,7 +43,7 @@ The annotation format is the one specified in the proposal:
 <class_id> <x_center> <y_center> <width> <height>
 ```
 
-Coordinates may be normalized to 0–1 or expressed in pixels. This MVP uses the following class map because the proposal defines IDs 1–6 but does not explicitly map each integer:
+Coordinates may be normalized to 0-1 or expressed in pixels. Ultra Vision uses the following class map because the proposal defines IDs 1-6 but does not explicitly map each integer:
 
 | ID | Action |
 |---:|---|
@@ -58,24 +58,24 @@ If the supplied annotations use a different map, edit `CLASS_NAMES` in `src/hri_
 
 ```bash
 # Train
-hri-action train /path/to/dataset --model artifacts/kth_model.joblib
+ultra-vision train /path/to/dataset --model artifacts/kth_model.joblib
 
 # Classify one sequence and create an annotated MP4
-hri-action predict /path/to/sequence --model artifacts/kth_model.joblib
+ultra-vision predict /path/to/sequence --model artifacts/kth_model.joblib
 
 # Evaluate labeled sequences
-hri-action evaluate /path/to/test_dataset --model artifacts/kth_model.joblib
+ultra-vision evaluate /path/to/test_dataset --model artifacts/kth_model.joblib
 ```
 
 Evaluation writes `metrics.json` and `confusion_matrix.png`. Prediction writes `prediction.json`, `median_frame.png`, and `prediction.mp4`.
 
-## Complete proposal experiment
+## Complete final-project experiment
 
 The full experiment command enforces the proposal's dataset contract, creates a reproducible action-and-environment stratified split (48 train / 24 test), trains the classifier, and produces all required quantitative and qualitative outputs:
 
 ```bash
-hri-action validate /path/to/dataset
-hri-action experiment /path/to/dataset --output artifacts/kth_experiment
+ultra-vision validate /path/to/dataset
+ultra-vision experiment /path/to/dataset --output artifacts/kth_experiment
 ```
 
 Expected environment markers `d1`, `d2`, `d3`, and `d4` may appear in any sequence path component. The experiment writes:

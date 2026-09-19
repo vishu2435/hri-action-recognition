@@ -1,3 +1,4 @@
+# Author: Vishesh
 from __future__ import annotations
 
 import csv
@@ -138,7 +139,7 @@ def run_experiment(
             write_annotated_video(frames, prediction, samples_dir / f"{stem}.mp4")
 
     summary = {
-        "proposal": "Human Action Recognition for Human-Robot Interaction",
+        "proposal": "Ultra Vision",
         "split": {"train": len(train), "test": len(test), "seed": seed},
         "metrics": {key: value for key, value in metrics.items() if key != "results"},
         "artifacts": {
